@@ -1,0 +1,15 @@
+{
+  "name": "wasm-snake",
+  "collaborators": [
+    "wiktorwieclaw <lonevixu@gmail.com>"
+  ],
+  "version": "0.1.0",
+  "files": [
+    "wasm_snake_bg.wasm",
+    "wasm_snake.js",
+    "wasm_snake.d.ts"
+  ],
+  "module": "wasm_snake.js",
+  "types": "wasm_snake.d.ts",
+  "sideEffects": false
+}
