@@ -176,11 +176,11 @@ function getInt32Memory0() {
     return cachegetInt32Memory0;
 }
 function __wbg_adapter_20(arg0, arg1, arg2) {
-    wasm._dyn_core__ops__function__FnMut__A____Output___R_as_wasm_bindgen__closure__WasmClosure___describe__invoke__h3290803bd4a05fb0(arg0, arg1, addHeapObject(arg2));
+    wasm._dyn_core__ops__function__FnMut__A____Output___R_as_wasm_bindgen__closure__WasmClosure___describe__invoke__h03779c1de6c509c6(arg0, arg1, addHeapObject(arg2));
 }
 
 function __wbg_adapter_23(arg0, arg1) {
-    wasm._dyn_core__ops__function__FnMut_____Output___R_as_wasm_bindgen__closure__WasmClosure___describe__invoke__h5300a963034b06e9(arg0, arg1);
+    wasm._dyn_core__ops__function__FnMut_____Output___R_as_wasm_bindgen__closure__WasmClosure___describe__invoke__h0e2678637cea8671(arg0, arg1);
 }
 
 /**
@@ -204,7 +204,7 @@ function init(module) {
     let result;
     const imports = {};
     imports.wbg = {};
-    imports.wbg.__wbindgen_cb_forget = function(arg0) {
+    imports.wbg.__wbindgen_object_drop_ref = function(arg0) {
         takeObject(arg0);
     };
     imports.wbg.__wbindgen_cb_drop = function(arg0) {
@@ -216,12 +216,12 @@ function init(module) {
         var ret = false;
         return ret;
     };
-    imports.wbg.__wbindgen_object_drop_ref = function(arg0) {
-        takeObject(arg0);
-    };
     imports.wbg.__wbindgen_string_new = function(arg0, arg1) {
         var ret = getStringFromWasm0(arg0, arg1);
         return addHeapObject(ret);
+    };
+    imports.wbg.__wbindgen_cb_forget = function(arg0) {
+        takeObject(arg0);
     };
     imports.wbg.__widl_instanceof_Window = function(arg0) {
         var ret = getObject(arg0) instanceof Window;
@@ -309,6 +309,10 @@ function init(module) {
             handleError(e)
         }
     };
+    imports.wbg.__widl_f_now_Performance = function(arg0) {
+        var ret = getObject(arg0).now();
+        return ret;
+    };
     imports.wbg.__widl_f_request_animation_frame_Window = function(arg0, arg1) {
         try {
             var ret = getObject(arg0).requestAnimationFrame(getObject(arg1));
@@ -319,6 +323,10 @@ function init(module) {
     };
     imports.wbg.__widl_f_document_Window = function(arg0) {
         var ret = getObject(arg0).document;
+        return isLikeNone(ret) ? 0 : addHeapObject(ret);
+    };
+    imports.wbg.__widl_f_performance_Window = function(arg0) {
+        var ret = getObject(arg0).performance;
         return isLikeNone(ret) ? 0 : addHeapObject(ret);
     };
     imports.wbg.__wbindgen_object_clone_ref = function(arg0) {
@@ -386,7 +394,7 @@ function init(module) {
     imports.wbg.__wbindgen_rethrow = function(arg0) {
         throw takeObject(arg0);
     };
-    imports.wbg.__wbindgen_closure_wrapper47 = function(arg0, arg1, arg2) {
+    imports.wbg.__wbindgen_closure_wrapper61 = function(arg0, arg1, arg2) {
 
         const state = { a: arg0, b: arg1, cnt: 1 };
         const real = (arg0) => {
@@ -396,7 +404,7 @@ function init(module) {
             try {
                 return __wbg_adapter_20(a, state.b, arg0);
             } finally {
-                if (--state.cnt === 0) wasm.__wbindgen_export_2.get(3)(a, state.b);
+                if (--state.cnt === 0) wasm.__wbindgen_export_2.get(13)(a, state.b);
                 else state.a = a;
             }
         }
@@ -405,7 +413,7 @@ function init(module) {
         var ret = real;
         return addHeapObject(ret);
     };
-    imports.wbg.__wbindgen_closure_wrapper45 = function(arg0, arg1, arg2) {
+    imports.wbg.__wbindgen_closure_wrapper63 = function(arg0, arg1, arg2) {
 
         const state = { a: arg0, b: arg1, cnt: 1 };
         const real = () => {
@@ -415,7 +423,7 @@ function init(module) {
             try {
                 return __wbg_adapter_23(a, state.b, );
             } finally {
-                if (--state.cnt === 0) wasm.__wbindgen_export_2.get(3)(a, state.b);
+                if (--state.cnt === 0) wasm.__wbindgen_export_2.get(13)(a, state.b);
                 else state.a = a;
             }
         }
