@@ -26,5 +26,6 @@ features = [
     "KeyboardEvent",
     "Event",
     "CssStyleDeclaration",
-    "Performance"
+    "Performance",
+    "console"
 ]

@@ -19,17 +19,16 @@ fn request_animation_frame(f: &Closure<dyn FnMut()>) {
         .expect("should register `requestAnimationFrame` OK");
 }
 
-fn handle_input(input: &Input, last_direction: Direction) -> Option<Direction> {
-    if input.is_pressed("ArrowUp") && last_direction != Direction::Down {
-        return Some(Direction::Up);
-    } else if input.is_pressed("ArrowDown") && last_direction != Direction::Up {
-        return Some(Direction::Down);
-    } else if input.is_pressed("ArrowLeft") && last_direction != Direction::Right {
-        return Some(Direction::Left);
-    } else if input.is_pressed("ArrowRight") && last_direction != Direction::Left {
-        return Some(Direction::Right);
+fn handle_input(input: &Input, direction: &mut Direction) {
+    if input.is_pressed("ArrowUp") {
+        *direction = Direction::Up;
+    } else if input.is_pressed("ArrowDown") {
+        *direction = Direction::Down;
+    } else if input.is_pressed("ArrowLeft") {
+        *direction = Direction::Left;
+    } else if input.is_pressed("ArrowRight") {
+        *direction = Direction::Right;
     }
-    None
 }
 
 #[wasm_bindgen(start)]
@@ -49,7 +48,7 @@ pub fn main() -> Result<(), JsValue> {
 
     let canvas_size = Size { w: 500, h: 500 };
     let mut canvas = Canvas::from(canvas)?;
-    canvas.set_size(canvas_size.clone());
+    canvas.set_size(canvas_size);
 
     let input = Input::new();
     input.connect_to_canvas(&canvas)?;
@@ -73,21 +72,28 @@ pub fn main() -> Result<(), JsValue> {
         Position { x: 0, y: 0 }
     ];
 
+    let mut direction = Direction::Right;
     let mut last_direction = Direction::Right;
-    let mut new_direction = last_direction;
 
     let mut last = performance.now();
 
     *g.borrow_mut() = Some(Closure::wrap(Box::new(move || {
-        new_direction = handle_input(&input, last_direction)
-            .unwrap_or(last_direction);
+         handle_input(&input, &mut direction);
+
+        if (direction == Direction::Up && last_direction == Direction::Down)
+            || (direction == Direction::Left && last_direction == Direction::Right)
+            || (direction == Direction::Right && last_direction == Direction::Left)
+            || (direction == Direction::Down && last_direction == Direction::Up)
+        {
+            direction = last_direction;
+        }
 
         let now = performance.now();
         if now - last > 150.0 {
             last = now;
-            last_direction = new_direction;
+            last_direction = direction;
 
-            let shift = match new_direction {
+            let shift = match direction {
                 Direction::Up => Position { x: 0, y: -1 },
                 Direction::Down => Position { x: 0, y: 1 },
                 Direction::Left => Position { x: -1, y: 0 },
@@ -103,7 +109,7 @@ pub fn main() -> Result<(), JsValue> {
                 || snake.iter().skip(1).find(|elem| **elem == shifted).is_some())
             {
                 for i in (1..snake.len()).rev() {
-                    snake[i] = snake[i - 1].clone();
+                    snake[i] = snake[i - 1];
                 }
 
                 snake[0] = shifted;
