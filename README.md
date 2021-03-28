@@ -1,10 +1,13 @@
-# How to build:
+# wasm-snake
 
-Necessary tools:
-* wasm-pack (https://crates.io/crates/wasm-pack)
-* https (https://crates.io/crates/https)
+## Try it out online
+https://wiktorwieclaw.github.io/wasm-snake/
 
-Commands:
+## Necessary tools:
+* [wasm-pack](https://crates.io/crates/wasm-pack)
+* a server e.g: [https](https://crates.io/crates/https)
+
+## How to build and run:
 ```
 wasm-pack build --target web
 http
