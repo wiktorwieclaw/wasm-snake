@@ -25,8 +25,8 @@ impl Canvas {
     }
 
     pub fn set_size(&mut self, size: Size) {
-        self.html_canvas.set_width(size.w);
-        self.html_canvas.set_height(size.h);
+        self.html_canvas.set_width(size.w as u32);
+        self.html_canvas.set_height(size.h as u32);
     }
 
     pub fn width(&self) -> u32 {

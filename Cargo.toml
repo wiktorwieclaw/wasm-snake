@@ -25,5 +25,6 @@ features = [
     "EventListener",
     "KeyboardEvent",
     "Event",
-    "CssStyleDeclaration"
+    "CssStyleDeclaration",
+    "Performance"
 ]
